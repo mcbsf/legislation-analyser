@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-#from .parsers.votes_parser import VotesParser
-#from .analysers.bills_analyser import BillsAnalyser
+from .parsers.votes_parser import VotesParser
+from .analysers.bills_analyser import BillsAnalyser
 from .analysers.legislator_analyser import LegislatorAnalyser
-#from .parsers.bills_parser import BillsParser 
+from .parsers.bills_parser import BillsParser 
 from .parsers.legislators_parser import LegislatorsParser 
 from .parsers.votes_results_parser import VotesResultsParser
-# Create your views here.
+
 def index(request):
 
     legislators_parser = LegislatorsParser()
@@ -26,4 +26,17 @@ def index(request):
     print("\n_______________________________________________________\n")
 
 
+    bills_parser = BillsParser()
+    bills_dict = bills_parser.parse_csv("my_app/inputs/bills.csv")
+    print(bills_dict)
+
+
+    votes_parser = VotesParser()
+    votes_dict = votes_parser.parse_csv("my_app/inputs/votes.csv")
+    print(votes_dict)
+
+    bills_analyser = BillsAnalyser(bills_dict, votes_dict, votes_results_dict, legislators_dict)
+    data = bills_analyser.get_analyzed_data()
+    print("\n\n ----> RESULT OF ANALYSIS\n\n")
+    print(data)
     return HttpResponse("Hello World")
