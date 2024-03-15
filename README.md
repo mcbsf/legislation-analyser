@@ -33,7 +33,7 @@ git clone git@github.com:mcbsf/legislation-analyser.git
 
 ```
 pip install virtualenv
-cd legislation-bills-analyser
+cd legislation-analyser
 virtualenv venv
 ```
 
@@ -51,6 +51,7 @@ pip install -r requirements.txt
 5. Install tailwind dependencies
 
 ```
+cd my_project
 python manage.py tailwind install
 
 ```
