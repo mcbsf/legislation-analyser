@@ -1,11 +1,31 @@
-<!DOCTYPE html>
+{% load static tailwind_tags %}
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="static/my_app/tailwind_styles.css">
     <meta charset="UTF-8">
-    <title>Upload CSV Files</title>
+    <title>Files Analysis</title>
+    {% tailwind_css %}
 </head>
 <body>
     <h1>Analysis</h1>
-    {{bills_analysis}}
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <th scope="col" class="px-6 py-3">Title</th>
+            <th scope="col" class="px-6 py-3">Sponsor</th>
+            <th scope="col" class="px-6 py-3">Supporters Count</th>
+            <th scope="col" class="px-6 py-3">Opposers Count</th>
+        </thead>
+        <tbody>
+
+            {% for bill in bills_analysis %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td>{{ bill.title }}</td>
+                <td>{{ bill.sponsor_name }}</td>
+                <td>{{ bill.supporter_count }}</td>
+                <td>{{ bill.opposer_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

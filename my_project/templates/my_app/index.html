@@ -1,48 +1,47 @@
+{% load static tailwind_tags %}
 <html lang="en">
 
 <head>
     <link rel="stylesheet" href="static/my_app/tailwind_styles.css">
     <meta charset="UTF-8">
     <title>Upload CSV Files</title>
+    {% tailwind_css %}
 </head>
 
 <body>
 
-    <div class=" max-w px-8 pt-6 pb-8 mx-auto">
-        <form class=" bg-white shadow-md rounded px-8 pt-6 pb-8 4 " method="post" enctype="multipart/form-data"
+    <div class="rounded-lg">
+        <form class=" bg-slate-100 shadow-md  rounded-3xl size-fit m-auto mt-40 px-10 4 " method="post" enctype="multipart/form-data"
             action="{% url 'analyse_files' %}">
             {% csrf_token %}
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <br>
+                    <label class="text-gray-800 text-base font-semibold mt-10 pt-10">
+                        Bills File
+                    </label>
+                    <input class="block  mt-2" type="file" accept="csv" name="bills_file" id="bills_file" required>
 
-            <div class="">
-                <label class="" for="username">
-                    Choose Bills File
-                </label>
-                <input class="mx-auto " type="file" accept="csv" name="bills_file" id="bills_file" required>
+                    <label class="block text-gray-800 text-lg font-semibold mb-2 mt-10">
+                        Legislators file
+                    </label>
+                    <input class="block mt-2" type="file" type="file" name="legislators_file" id="legislators_file"
+                        required>
+
+                    <label class="block text-gray-800 text-lg font-semibold mb-2 mt-10">
+                        Votes File
+                    </label>
+                    <input class="block mt-2" type="file" name="votes_file" id="votes_file" required>
+
+                    <label class="block text-gray-800 text-lg font-semibold mb-2 mt-10">
+                        Votes Results File
+                    </label>
+                    <input class="block mt-2 mb-10" type="file" name="votes_results_file" id="votes_results_file" required>
+                </div>
+                <div class="m-auto text-center ml-10">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-2xl" type="submit">Analyze Files</button>
+                </div>
             </div>
-
-            <div class="">
-                <label class="" for="password">
-                    Choose Legislators file
-                </label>
-
-                <input class="mx-auto " type="file" type="file" name="legislators_file" id="legislators_file" required>
-            </div>
-
-            <div class="">
-                <label class="" for="username">
-                    Choose Votes File
-                </label>
-                <input class="" type="file" name="votes_file" id="votes_file" required>
-            </div>
-
-            <div class="">
-                <label class="" for="username">
-                    Choose Votes Results File
-                </label>
-                <input class="" type="file" name="votes_results_file" id="votes_results_file" required>
-            </div>
-
-            <button type="submit">Analyze Files</button>
         </form>
     </div>
 </body>
