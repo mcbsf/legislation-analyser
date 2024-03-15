@@ -45,6 +45,6 @@ def analyse_files(request):
     print(bills_analysis)
     context = {
         'bills_analysis': bills_analysis,
-        'legislator_analysis': legislator_analysis
+        'legislators_analysis': legislator_analysis
     }
     return render(request, "my_app/analysis.html", context)

@@ -1,31 +1,62 @@
 {% load static tailwind_tags %}
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="static/my_app/tailwind_styles.css">
     <meta charset="UTF-8">
     <title>Files Analysis</title>
     {% tailwind_css %}
 </head>
-<body>
-    <h1>Analysis</h1>
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <th scope="col" class="px-6 py-3">Title</th>
-            <th scope="col" class="px-6 py-3">Sponsor</th>
-            <th scope="col" class="px-6 py-3">Supporters Count</th>
-            <th scope="col" class="px-6 py-3">Opposers Count</th>
-        </thead>
-        <tbody>
 
-            {% for bill in bills_analysis %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td>{{ bill.title }}</td>
-                <td>{{ bill.sponsor_name }}</td>
-                <td>{{ bill.supporter_count }}</td>
-                <td>{{ bill.opposer_count }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<body>
+
+    <div class="grid grid-cols-2 gap-2">
+
+        <div class="mx-10 mt-10">
+            
+            <h1 class="text-center text-gray-800 text-xl font-semibold">Legislator Analysis</h1>
+            <table class="ml-20 mt-4 text-sm text-left rtl:text-right text-gray-600 dark:text-gray-400">
+
+                <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col" class="p-4 m-10 text-center">Name</th>
+                    <th scope="col" class="p-4 m-10 text-center">Supported Bills</th>
+                    <th scope="col" class="p-4 m-10 text-center">Opposed Bills</th>
+                </thead>
+                <tbody>
+
+                    {% for legislator in legislators_analysis %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-5 py-2">{{ legislator.name }}</td>
+                        <td class="px-5 py-2 text-center">{{ legislator.num_supported_bills }}</td>
+                        <td class="px-5 py-2 text-center">{{ legislator.num_opposed_bills }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mr-40 mt-10">
+            <h1 class="text-center text-gray-800 text-xl font-semibold">Bills Analysis</h1>
+            <table class="mt-4 text-sm text-left rtl:text-right text-gray-600 dark:text-gray-400">
+                <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col" class="p-4 m-10 text-center">Title</th>
+                    <th scope="col" class="p-4 m-10 text-center">Sponsor</th>
+                    <th scope="col" class="p-4 m-10 text-center">Supporters Count</th>
+                    <th scope="col" class="p-4 m-10 text-center">Opposers Count</th>
+                </thead>
+                <tbody>
+
+                    {% for bill in bills_analysis %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-5 py-2 ml-30">{{ bill.title }}</td>
+                        <td class="px-5 py-2 mr-30">{{ bill.sponsor_name }}</td>
+                        <td class="px-5 py-2 text-center">{{ bill.supporter_count }}</td>
+                        <td class="px-5 py-2 text-center">{{ bill.opposer_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+
 </html>
