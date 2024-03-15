@@ -23,8 +23,8 @@ def analyse_files(request):
     votes_results_dict = votes_results_parser.parse_csv(votes_results_file_path)
     
     legislator_analyser = LegislatorAnalyser(legislators_dict, votes_results_dict)
-    legislator_analyser.split_votes_count_by_vote_type()
-    legislator_analyser.get_legislators_name()
+    vote_counts_by_legislator_id = legislator_analyser.get_vote_counts_by_legislator_id()
+    legislator_analyser.merge_with_legislator_names(vote_counts_by_legislator_id)
     print("\n\n VOTE COUNTS \n\n")
     legislator_analysis = legislator_analyser.parse_legislators_dict_to_list()
     print("\n_______________________________________________________\n")
