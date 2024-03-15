@@ -14,7 +14,7 @@ Probably it would need add lines to:
 3. the bill analyser class that would need to get these data from the model and set into the output data
 
 ### How would you change your solution if instead of receiving CSVs of data, you were given a list of legislators or bills that you should generate a CSV for?
-I would mount the dataframe from the lists, in the beginning of main.py, and would keep the dataframe as input in the analysers to do not lose previous work unless performance is a big priority.
+I would change only the Parsers file, wich is responsible to translate the CSV into expected structure.
 
 ### How long did I spend working on the assignment?
 about 8 hours in 4 splitted times. 3 hours on back-end, 4 hours on frontend(had to learn TailwindCSS for this process although not required in project description) and 1 hour on documentation
