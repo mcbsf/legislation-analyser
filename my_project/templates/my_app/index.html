@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="static/my_app/tailwind_styles.css">
+    <meta charset="UTF-8">
+    <title>Upload CSV Files</title>
+</head>
+
+<body>
+
+    <div class=" max-w px-8 pt-6 pb-8 mx-auto">
+        <form class=" bg-white shadow-md rounded px-8 pt-6 pb-8 4 " method="post" enctype="multipart/form-data"
+            action="{% url 'analyse_files' %}">
+            {% csrf_token %}
+
+            <div class="">
+                <label class="" for="username">
+                    Choose Bills File
+                </label>
+                <input class="mx-auto " type="file" accept="csv" name="bills_file" id="bills_file" required>
+            </div>
+
+            <div class="">
+                <label class="" for="password">
+                    Choose Legislators file
+                </label>
+
+                <input class="mx-auto " type="file" type="file" name="legislators_file" id="legislators_file" required>
+            </div>
+
+            <div class="">
+                <label class="" for="username">
+                    Choose Votes File
+                </label>
+                <input class="" type="file" name="votes_file" id="votes_file" required>
+            </div>
+
+            <div class="">
+                <label class="" for="username">
+                    Choose Votes Results File
+                </label>
+                <input class="" type="file" name="votes_results_file" id="votes_results_file" required>
+            </div>
+
+            <button type="submit">Analyze Files</button>
+        </form>
+    </div>
+</body>
+
+</html>

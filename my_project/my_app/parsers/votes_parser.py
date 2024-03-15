@@ -1,4 +1,5 @@
 import csv
+import io
 from my_app.models import Vote
 
 
@@ -6,18 +7,21 @@ class VotesParser:
     def __init__(self):
         self.votes = {}
 
-    def parse_csv(self, votes_data_file):
+    def parse_csv(self, votes_file):
 
         self.votes = {}
-        self.votes = {}
-        with open(votes_data_file, 'r') as csvfile:
-            reader = csv.DictReader(csvfile)  # Assuming header row for column names
-            for row in reader:
+        decoded_file = votes_file.read().decode('utf-8')
+        io_string = io.StringIO(decoded_file)
+        lines = 0
+        for row in csv.reader(io_string, delimiter=',', quotechar='|'):
+            print(row)
+            if lines>0:
                 self.create_vote(row)
+            lines+=1
         return self.votes
 
     def create_vote(self, data):
-        vote = Vote(**data)
+        vote = Vote(*data)
         self.votes[vote.id] = vote
     
     def get_votes(self):
