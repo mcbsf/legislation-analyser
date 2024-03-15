@@ -48,8 +48,21 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Run the server
+5. Install tailwind dependencies
 
+```
+python manage.py tailwind install
+
+```
+
+6. Start tailwind server(dont close the terminal window)
+
+```
+python manage.py tailwind start
+
+```
+
+7. In other terminal window, start the django server
 ```
 cd my_project
 python manage.py runserver
